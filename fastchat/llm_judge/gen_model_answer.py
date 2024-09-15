@@ -86,7 +86,7 @@ def get_model_answers(
     model, tokenizer = load_model(
         model_path,
         revision=revision,
-        device="cpu",
+        device="gpu",
         num_gpus=num_gpus_per_model,
         max_gpu_memory=max_gpu_memory,
         dtype=dtype,
@@ -94,6 +94,7 @@ def get_model_answers(
         cpu_offloading=False,
         debug=False,
     )
+    model.cpu()
     for question in tqdm(questions):
         if question["category"] in temperature_config:
             temperature = temperature_config[question["category"]]
