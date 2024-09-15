@@ -109,7 +109,10 @@ class BaseModelAdapter:
             tokenizer = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-2B-Instruct")
         try:
             model = Qwen2VLForConditionalGeneration.from_pretrained(
-                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+                "Qwen/Qwen2-VL-2B-Instruct",
+                trust_remote_code=True,
+                low_cpu_mem_usage=True,
+                **from_pretrained_kwargs,
             )
         except NameError:
             model = AutoModel.from_pretrained(
