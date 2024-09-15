@@ -94,7 +94,7 @@ def get_model_answers(
         cpu_offloading=False,
         debug=False,
     )
-    model.cpu()
+    model.cuda()
     for question in tqdm(questions):
         if question["category"] in temperature_config:
             temperature = temperature_config[question["category"]]
